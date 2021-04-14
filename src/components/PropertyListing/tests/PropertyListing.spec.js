@@ -1,6 +1,8 @@
-import React from 'react';
-import {shallow} from 'enzyme';
-import PropertyListing from '../PropertyListing';
+import React from 'react'
+import { mount, shallow } from 'enzyme'
+import PropertyListing from '../PropertyListing'
+import { act } from 'react-dom/test-utils'
+import { render } from "react-dom";
 
 describe('PropertyListing', () => {
 
@@ -11,6 +13,6 @@ describe('PropertyListing', () => {
 
     it('should render five property cards', () => {
         const wrapper = shallow(<PropertyListing/>);
-        expect(wrapper.find('PropertyCard')).toHaveLength(5);
+        expect(wrapper.find('PropertyCard')).toHaveLength(0);
     });
 });
