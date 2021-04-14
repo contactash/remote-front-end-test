@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
 import PropertyCard from '../PropertyCard';
 import './PropertyListing.scss';
+import axios from 'axios'
 
 const DUMMY_PROPERTY = {
     id: 73864112,
@@ -17,10 +18,21 @@ const DUMMY_PROPERTY = {
 };
 
 const PropertyListing = () => {
+    
+    const [propertyData, setPropertyData] = useState([])
+    
+    useEffect(() => {
+        fetch();
+        async function fetch() {
+            const response = await (await axios('http://localhost:3000/api/properties'));
+            setPropertyData(response.data);
+        }
+    }, [])
+    
     return (
         <div className="PropertyListing">
             {
-                Array(5).fill(DUMMY_PROPERTY)
+                propertyData.slice(0, 5)
                     .map((property, index) => <PropertyCard key={index} {...property}/>)
             }
         </div>
